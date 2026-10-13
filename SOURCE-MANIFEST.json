@@ -420,9 +420,14 @@
     "sha256": "a5093fccc9ef226532534a687635a212acf41b7905fcddce7af57e08e972cfcd"
   },
   {
+    "path": "README.en.md",
+    "size": 6489,
+    "sha256": "5f57a231bd31d25dae6ed468ff5f01caef9ab2de776ec3cc05fcb86be51cbadc"
+  },
+  {
     "path": "README.md",
-    "size": 4824,
-    "sha256": "6fbdadf9c27405df1d8929337c566c1b85ed6fc5fffb368449febecdb352216e"
+    "size": 5572,
+    "sha256": "df5aba915e425b1c5ad35980f4f003046c637d1e7a292fb14ab5ccabb8064502"
   },
   {
     "path": "backend/.dockerignore",
