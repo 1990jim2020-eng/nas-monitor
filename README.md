@@ -4,6 +4,22 @@
 
 GitHub 工作流仅手动触发；上传源码不会自动构建 APK 或发布镜像。正式发行时由维护者配置自己的签名 Secrets 并主动运行。
  
+## 界面预览
+
+| 服务器总览 | 网关概览 | 网关日志 |
+| --- | --- | --- |
+| ![服务器总览](docs/screenshots/01-服务器总览.jpg) | ![网关概览](docs/screenshots/02-网关概览.jpg) | ![网关日志](docs/screenshots/03-网关日志.jpg) |
+
+| 日志详情 | 使用日报 | 工具 |
+| --- | --- | --- |
+| ![日志详情](docs/screenshots/04-日志详情.jpg) | ![使用日报](docs/screenshots/05-使用日报.jpg) | ![工具](docs/screenshots/06-工具.jpg) |
+
+| NAS 详情 | | |
+| --- | --- | --- |
+| ![NAS 详情](docs/screenshots/07-NAS详情.jpg) | | |
+
+> 截图为作者自建环境的演示数据，已移除拍摄设备信息；主机地址、渠道名等仅代表该演示环境。
+
 ## 包内结构
  
 - `backend/api_server.py`：Python 3.11 后端入口。

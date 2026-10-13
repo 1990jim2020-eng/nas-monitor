@@ -205,14 +205,14 @@
     "sha256": "05f513d761a0566e902c2ba72abfd826f51f83c29c495e8c856e9b2925a495b3"
   },
   {
-    "path": "HADashboard/app/src/main/res/drawable/ic_launcher_background.xml",
-    "size": 192,
-    "sha256": "c46db0666ed420cf7da50bcab4175508a928d797568b1cc48cb1345261f374db"
-  },
-  {
     "path": "HADashboard/app/src/main/res/drawable-nodpi/ic_monitor_splash.png",
     "size": 520323,
     "sha256": "d78bbb02baed2e744cb3b106c2514e85dd52f4d58486095846a7de1df1b3c341"
+  },
+  {
+    "path": "HADashboard/app/src/main/res/drawable/ic_launcher_background.xml",
+    "size": 192,
+    "sha256": "c46db0666ed420cf7da50bcab4175508a928d797568b1cc48cb1345261f374db"
   },
   {
     "path": "HADashboard/app/src/main/res/layout/widget_overview.xml",
@@ -380,6 +380,11 @@
     "sha256": "be311800156fb01288e237af32437f34f98909fd070e58fa515baf271d468cfb"
   },
   {
+    "path": "HADashboard/gradle.properties",
+    "size": 102,
+    "sha256": "5ee053329640f9a16a585c50c96469f49f086a61fec0ab25670d5fc9913fdd6c"
+  },
+  {
     "path": "HADashboard/gradle/wrapper/gradle-wrapper.jar",
     "size": 43453,
     "sha256": "cb0da6751c2b753a16ac168bb354870ebb1e162e9083f116729cec9c781156b8"
@@ -388,11 +393,6 @@
     "path": "HADashboard/gradle/wrapper/gradle-wrapper.properties",
     "size": 250,
     "sha256": "712d9bc912d4b0d42b0faf8c6afeed13ae31ced75ca28463b1dfc4ced1a4bc9a"
-  },
-  {
-    "path": "HADashboard/gradle.properties",
-    "size": 102,
-    "sha256": "5ee053329640f9a16a585c50c96469f49f086a61fec0ab25670d5fc9913fdd6c"
   },
   {
     "path": "HADashboard/gradlew",
@@ -638,6 +638,41 @@
     "path": "docs/assets/架构图-需求规格.svg",
     "size": 10248,
     "sha256": "c09b69d6fb888a845122e70383631dfda792e59a5532e279baf4990188dcf501"
+  },
+  {
+    "path": "docs/screenshots/01-服务器总览.jpg",
+    "size": 169294,
+    "sha256": "12675cd8cfc0ace1b70a5d34acefe72954f09dd196e32aa52327feb6beeae43a"
+  },
+  {
+    "path": "docs/screenshots/02-网关概览.jpg",
+    "size": 199937,
+    "sha256": "a72af2d435122345f223e3befa8be4f45fd94808ed7c4974acb6de9b1cbe618a"
+  },
+  {
+    "path": "docs/screenshots/03-网关日志.jpg",
+    "size": 192899,
+    "sha256": "05693a3c8759dc082687131cbb08fe2ed3c6c9edaee8079c28bc1179da105669"
+  },
+  {
+    "path": "docs/screenshots/04-日志详情.jpg",
+    "size": 129151,
+    "sha256": "0c57830271e4750fc437cbc9a19d19ede7a6b0e8e70b61fcc9b455918d52836d"
+  },
+  {
+    "path": "docs/screenshots/05-使用日报.jpg",
+    "size": 136910,
+    "sha256": "2beede0ec0bbc588af21c220c8efad66e590be911b83bd2f2ae71991834b909f"
+  },
+  {
+    "path": "docs/screenshots/06-工具.jpg",
+    "size": 135890,
+    "sha256": "91dbcda1bfe8ab5d5747c96aeaef79bca27a0d8829195b2d1bbe41ec2d6f58b3"
+  },
+  {
+    "path": "docs/screenshots/07-NAS详情.jpg",
+    "size": 127391,
+    "sha256": "4aa247e9df125392d85c86b6694520f0f7bf4e1e585a7dada4badd949dc56000"
   },
   {
     "path": "docs/源码交付审查报告.md",
