@@ -33,6 +33,26 @@ bash ./gradlew --no-daemon :app:testDebugUnitTest :app:assembleDebug
 
 说明触发场景、修改后行为、验证结果与仍有的限制。涉及 UI 时附脱敏截图；涉及可选服务时注明上游前提。贡献按 [MIT License](LICENSE) 发布。
 
+## 维护者：如何审 PR
+
+收到 PR 后按下面顺序处理，避免误合并：
+
+1. 先看 diff 全貌，确认改动范围与 PR 描述一致，没有夹带无关文件。
+2. 重点检查是否引入凭据、真实域名/IP、账号信息，或新增隐式挂载与外部调用。第三方 PR 夹带 `.env`、token 或可疑脚本是常见套路。
+3. 拉取到本地验证，不要只信 CI：
+
+```bash
+git fetch origin pull/<PR编号>/head:pr-<PR编号>
+git checkout pr-<PR编号>
+python3 -m unittest discover -s backend
+cd HADashboard && bash ./gradlew --no-daemon :app:testDebugUnitTest
+```
+
+4. 满意再合并；不满意直接 Close 并说明原因即可，无需感到负担。想先讨论就用 Draft PR 或留言要求修改。
+5. 涉及可选服务或部署行为的改动，确认 README / 文档已同步更新。
+
+仓库启用了新 Issue / PR 自动回复，用于说明维护节奏并提醒脱敏要求；这只是提示，不替代人工判断。
+
 ## 发布维护
 
 维护者配置四个 Android 签名 Secrets，保证连续版本使用同一 keystore 且递增 `versionCode`，再推送版本 tag。两个 GitHub Actions 会分别发布签名 APK 和 GHCR 后端镜像；推送 `main` 只触发后端镜像发布。未执行实际 Actions 时，不宣称已验证 GitHub 发布或多架构镜像。

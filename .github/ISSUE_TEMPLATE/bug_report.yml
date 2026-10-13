@@ -1,0 +1,87 @@
+name: 问题反馈 / Bug report
+description: 报告运行错误、部署失败或功能异常
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢反馈。提交前请先确认这是**本项目**的问题，而不是自己环境的配置差异。
+
+        > 本项目是作者自用的个人工具，全程由 AI 开发，响应可能不及时，也不承诺修复所有问题。
+        > 提交前请先阅读 [README](../README.md) 与 [配置与凭据获取说明](../docs/配置与凭据获取说明.md)。
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: 提交前确认
+      options:
+        - label: 我已搜索过现有 Issue，确认没有重复
+          required: true
+        - label: 我已阅读 README 的部署说明，并按说明准备了自己的 `.env`
+          required: true
+        - label: 我确认下面的内容**不含**真实域名、IP、Token、密码、密钥或账号文件
+          required: true
+  - type: dropdown
+    id: component
+    attributes:
+      label: 涉及模块
+      options:
+        - 后端 API / 采集器
+        - Web 前端
+        - Android App
+        - Docker / Compose 部署
+        - 文档
+        - 不确定
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: 版本
+      description: App 版本号，或仓库 commit（`git rev-parse --short HEAD`）
+      placeholder: "例如 v214 / 32d2bbc"
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: 运行环境
+      description: 系统、Docker 版本、Python 版本、JDK/Android SDK 版本、上游服务（如 Glances）版本。**不要填真实地址和凭据。**
+      placeholder: |
+        - 系统：fnOS / Debian 12
+        - Docker：27.x
+        - Python：3.11
+        - Glances：4.x
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      description: 按顺序列出可复现的最小步骤
+      placeholder: |
+        1. 执行 ...
+        2. 打开 ...
+        3. 出现 ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 预期行为
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际行为
+      description: 附脱敏后的报错信息或日志
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: 补充信息
+      description: 截图（请脱敏）、已尝试的排查、其他线索。可选。
+    validations:
+      required: false

@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 部署与配置说明
+    url: https://github.com/YIKESHU-JAY/nas-monitor/blob/main/docs/配置与凭据获取说明.md
+    about: 部署前请先阅读配置与凭据获取说明
+  - name: 贡献指南
+    url: https://github.com/YIKESHU-JAY/nas-monitor/blob/main/CONTRIBUTING.md
+    about: 提交 PR 前请阅读贡献指南

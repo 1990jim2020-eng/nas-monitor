@@ -1,5 +1,25 @@
 [
   {
+    "path": ".github/ISSUE_TEMPLATE/bug_report.yml",
+    "size": 2676,
+    "sha256": "64249fe338c77014a791a156201763f0aa222ded99fc0f394d7d38e8023dbb69"
+  },
+  {
+    "path": ".github/ISSUE_TEMPLATE/config.yml",
+    "size": 380,
+    "sha256": "f18745687e690b32fe6ecd90e8f9bfb3c8e8088e7fe575f77fbcf3d1ad166bb8"
+  },
+  {
+    "path": ".github/ISSUE_TEMPLATE/feature_request.yml",
+    "size": 1415,
+    "sha256": "208fdac5d4fd40a9dcd8bb90a2e571512296c49c9f12d95d67524b3035dff226"
+  },
+  {
+    "path": ".github/PULL_REQUEST_TEMPLATE.md",
+    "size": 1269,
+    "sha256": "48d3b1bcbed509a955750c8689a0807151564329fdff14a795c737dd5e51bbc8"
+  },
+  {
     "path": ".github/workflows/android-release.yml",
     "size": 3621,
     "sha256": "4ee6571c7947dcc2b6776c9b670f5ce8a38a678fd117c2645195580d5b8daeb7"
@@ -8,6 +28,11 @@
     "path": ".github/workflows/backend-image.yml",
     "size": 1591,
     "sha256": "658fe9bc5a745fb9175d949095e8a6362498a6d1433fcd9f1b4494ec521b2ced"
+  },
+  {
+    "path": ".github/workflows/issue-notice.yml",
+    "size": 1856,
+    "sha256": "a60cbaa432a21de2a7ad282c1794854e58ec96b9ce124b54b7960d8ff9cf5b49"
   },
   {
     "path": ".gitignore",
@@ -21,8 +46,8 @@
   },
   {
     "path": "CONTRIBUTING.md",
-    "size": 2526,
-    "sha256": "ddcd4b768ca70484cf8afb420f6291849a0c10cb250cfe13e965ca4248b530ca"
+    "size": 3496,
+    "sha256": "b7965d465e4d9936bd6c84be906892473bb5c2593615c51d2510d85d40041a4d"
   },
   {
     "path": "HADashboard/.gitignore",
