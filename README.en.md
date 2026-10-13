@@ -6,6 +6,8 @@ This repository contains the real backend, Web frontend, and Android app source 
 
 GitHub workflows are **manual-trigger only**; pushing source will not build an APK or publish an image. For a real release, configure your own signing secrets and run the workflow yourself.
 
+> **A quick note**: this started as a small tool the author built for personal use. Both the code and the deployment were done entirely with AI, and every design decision targets the author's own NAS setup rather than general-purpose use. It is not meant to be a universal product, so it may not fit every scenario. If you happen to have a similar need, feel free to reference it and adapt it as you like; if your setup differs, that is completely understandable — hopefully it is still of some help. 🙂
+
 ## Screenshots
 
 | Servers | Gateway overview | Gateway logs |

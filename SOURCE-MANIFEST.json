@@ -421,13 +421,13 @@
   },
   {
     "path": "README.en.md",
-    "size": 6489,
-    "sha256": "5f57a231bd31d25dae6ed468ff5f01caef9ab2de776ec3cc05fcb86be51cbadc"
+    "size": 6998,
+    "sha256": "0a4f7b50d5c87e89666a61a13761f97505e1352d8029ef38776e00740722b8e0"
   },
   {
     "path": "README.md",
-    "size": 5572,
-    "sha256": "df5aba915e425b1c5ad35980f4f003046c637d1e7a292fb14ab5ccabb8064502"
+    "size": 5963,
+    "sha256": "a4c56dece012a6ef949b181b1f964173d604e88094d1d73c4d7275112a09f6f7"
   },
   {
     "path": "backend/.dockerignore",
