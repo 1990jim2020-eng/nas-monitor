@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical"
+ android:padding="8dp" android:background="#F5F7FB">
+ <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical">
+  <TextView android:id="@+id/widget_title" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="服务器状态" android:textColor="#111827" android:textSize="13sp" android:textStyle="bold"/>
+  <TextView android:id="@+id/widget_update_time" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#9CA3AF" android:textSize="9sp"/>
+ </LinearLayout>
+ <LinearLayout android:id="@+id/nas_section" style="@style/WidgetDeviceRow">
+  <LinearLayout style="@style/WidgetDeviceTop"><TextView android:id="@+id/nas_title" style="@style/WidgetDeviceName" android:text="NAS"/><TextView android:id="@+id/nas_status" style="@style/WidgetDeviceStatus"/><TextView android:id="@+id/nas_cpu" style="@style/WidgetMetric"/><TextView android:id="@+id/nas_mem" style="@style/WidgetMetric"/></LinearLayout>
+  <LinearLayout style="@style/WidgetDeviceBottom"><TextView android:id="@+id/nas_temp" style="@style/WidgetDetail"/><TextView android:id="@+id/nas_net" style="@style/WidgetDetail"/></LinearLayout>
+ </LinearLayout>
+ <LinearLayout android:id="@+id/aliyun_section" style="@style/WidgetDeviceRow">
+  <LinearLayout style="@style/WidgetDeviceTop"><TextView android:id="@+id/aliyun_title" style="@style/WidgetDeviceName" android:text="阿里云"/><TextView android:id="@+id/aliyun_status" style="@style/WidgetDeviceStatus"/><TextView android:id="@+id/aliyun_cpu" style="@style/WidgetMetric"/><TextView android:id="@+id/aliyun_mem" style="@style/WidgetMetric"/></LinearLayout>
+  <LinearLayout style="@style/WidgetDeviceBottom"><TextView android:id="@+id/aliyun_temp" style="@style/WidgetDetail"/><TextView android:id="@+id/aliyun_net" style="@style/WidgetDetail"/></LinearLayout>
+ </LinearLayout>
+ <LinearLayout android:id="@+id/router_section" style="@style/WidgetDeviceRow">
+  <LinearLayout style="@style/WidgetDeviceTop"><TextView android:id="@+id/router_title" style="@style/WidgetDeviceName" android:text="路由器"/><TextView android:id="@+id/router_status" style="@style/WidgetDeviceStatus"/><TextView android:id="@+id/router_cpu" style="@style/WidgetMetric"/><TextView android:id="@+id/router_mem" style="@style/WidgetMetric"/></LinearLayout>
+  <LinearLayout style="@style/WidgetDeviceBottom"><TextView android:id="@+id/router_temp" style="@style/WidgetDetail"/><TextView android:id="@+id/router_net" style="@style/WidgetDetail"/></LinearLayout>
+ </LinearLayout>
+</LinearLayout>

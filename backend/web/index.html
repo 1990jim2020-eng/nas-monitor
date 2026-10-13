@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#5B7CFA">
+<title>NAS Monitor</title>
+<link rel="stylesheet" href="style.css">
+<style>.hidden { display: none !important; }</style>
+</head>
+<body>
+
+<!-- 访问口令门（与 App 首启门一致：口令只留本地） -->
+<div id="auth" class="auth-shell hidden">
+  <div class="card auth-card">
+    <div class="card-title">Monitor 访问验证</div>
+    <div class="caption muted mt-2">请输入管理员提供的访问口令。口令仅保存在本浏览器中，用于访问 nas-monitor-api 的 /api/*。</div>
+    <div class="spacer-h"></div>
+    <label class="field"><span>访问口令</span>
+      <input type="password" id="authtoken" autocomplete="current-password" placeholder="粘贴访问口令">
+    </label>
+    <div id="autherr" class="tiny auth-error"></div>
+    <div class="spacer-h"></div>
+    <button class="btn primary auth-btn" id="authbtn">进入 Monitor</button>
+  </div>
+</div>
+
+<!-- 主应用 -->
+<div id="app" class="hidden">
+  <div class="wrap">
+    <div id="globalerr"></div>
+    <div id="pagehead"></div>
+    <div id="page"></div>
+    <div id="extras"></div>
+  </div>
+  <nav id="nav" class="nav"></nav>
+</div>
+
+<div id="toast" class="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>

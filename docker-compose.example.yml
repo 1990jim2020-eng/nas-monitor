@@ -1,0 +1,51 @@
+# Run from repository root:
+# docker compose -f docker-compose.example.yml up -d --build
+# Prepare root .env first; README.md includes the minimal configuration.
+# Glances (:61208) is supplied by the user, not deployed by this template.
+# Set NAS_HOST and NAS_GLANCES in .env; configure the same backend URL in App.
+name: nas-monitor
+
+services:
+  nas-monitor-api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: nas-monitor-api:local
+    restart: unless-stopped
+    init: true
+    ports:
+      - "${MONITOR_BIND_ADDRESS:-127.0.0.1}:${MONITOR_PORT:-8765}:8765"
+    env_file:
+      - .env
+    environment:
+      API_PORT: "8765"
+      HEALTH_PORT: "8766"
+      BACKEND_ROOT: /app/data
+      PYTHONUNBUFFERED: "1"
+      TZ: ${TZ:-Asia/Shanghai}
+      # Core-only deployment: disable the optional-service scheduler by default.
+      NAS_MONITOR_SCHEDULER: ${NAS_MONITOR_SCHEDULER:-0}
+    volumes:
+      - nas-monitor-data:/app/data
+    healthcheck:
+      # Loopback liveness listener; does not require a token or call upstreams.
+      test:
+        - CMD
+        - python3
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8766/health', timeout=5).close()"
+      interval: 30s
+      timeout: 6s
+      retries: 3
+      start_period: 30s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    # Optional integrations are NOT deployed or mounted here:
+    # HA (:8123), New API (:3002), AnythingLLM (:3005), iKuai, Mihomo, WorkBuddy.
+    # Supply your own services and credentials; add mounts only if needed.
+
+volumes:
+  nas-monitor-data:

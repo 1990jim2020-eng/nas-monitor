@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#5B7CFA">
+<title>NAS Monitor 登录</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="auth-shell">
+  <section class="card auth-card" id="state">
+    <div class="card-title">正在登录 NAS Monitor…</div>
+    <div class="caption muted" style="margin-top:8px">此页面只在本浏览器保存 Web 访问令牌，随后自动进入 Monitor。</div>
+  </section>
+</main>
+<script>
+(function () {
+  "use strict";
+  var raw = location.hash.slice(1);
+  var params = new URLSearchParams(raw);
+  var token = params.get("token") || "";
+  var code = params.get("code") || "";
+  var box = document.getElementById("state");
+  function fail(message) {
+    box.innerHTML = '<div class="card-title">登录链接无效</div><div class="caption muted" style="margin-top:8px">' + message + '</div>';
+  }
+  function finish(value) {
+    if (!value || value.length < 24) { fail("请重新打开管理员提供的一次性登录链接。"); return; }
+    localStorage.setItem("nas_monitor_token", value);
+    // token/code 均只在 URL fragment 或 POST body 中传递，不写入地址栏、服务端访问日志或源码。
+    location.replace("/");
+  }
+  // 向后兼容原有二维码（其中的 token 只存在 fragment）。
+  if (token) { finish(token); return; }
+  if (!code) { fail("请重新打开管理员提供的一次性登录链接。"); return; }
+  fetch("/api/web-bootstrap", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    cache: "no-store",
+    body: JSON.stringify({ code: code })
+  }).then(function (response) {
+    if (!response.ok) throw new Error("expired");
+    return response.json();
+  }).then(function (data) {
+    finish((data || {}).token || "");
+  }).catch(function () {
+    fail("链接可能已使用或已过期；请让管理员生成新的登录链接。");
+  });
+})();
+</script>
+</body>
+</html>

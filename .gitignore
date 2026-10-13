@@ -1,0 +1,78 @@
+# Local environment and credentials (keep sanitized examples)
+.env
+.env.*
+!.env.example
+!.env.sample
+credentials.env
+secrets/
+keystore/
+keystores/
+*.keystore
+*.jks
+*.p12
+*.pfx
+*.pem
+*.key
+*.key.properties
+keystore.properties
+.newapi_admin_token
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Android / Gradle
+.gradle/
+.kotlin/
+build/
+local.properties
+*.apk
+*.apk.idsig
+*.aab
+*.apks
+*.dex
+*.hprof
+.cxx/
+.externalNativeBuild/
+
+# Unrelated local experiments and release artifacts
+paseo-src/
+paseo-release-inputs/
+paseo-v0.10.3-notify/
+liquid-probe/
+*.dupe-removed-*
+
+# Local root-level screenshots (app icons under HADashboard/app/src/main/res are kept)
+/nas-detail.png
+/nas-detail2.png
+/nas-detail3.png
+/tools.png
+
+# Runtime data, logs, state and backups
+backups/
+*backup*/
+/backend/data/
+shadow/
+probe_state/
+*.bak*
+*.pre-*
+*.log
+*.lock
+!HADashboard/gradle/dependency-locks/*.lock
+*_snapshot.json
+*_baseline.json
+*_credit_cap.json
+auth_state.json
+.nas-monitor-scheduler.lock
+
+# Local tooling
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+node_modules/

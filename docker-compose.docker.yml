@@ -1,0 +1,6 @@
+services:
+  nas-monitor-api:
+    group_add:
+      - "${DOCKER_GID:?Set DOCKER_GID from the host Docker socket GID}"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro

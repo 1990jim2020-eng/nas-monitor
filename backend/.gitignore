@@ -1,0 +1,22 @@
+# ── 敏感文件 - 绝不入库 ──
+.env
+.env.*
+!.env.example
+auth_state.json
+.newapi_admin_token
+*_snapshot.json
+balance_baseline.json
+balance_month_baseline.json
+secrets/
+probe_state/
+data/
+shadow/
+
+# ── 备份/缓存 ──
+*.bak*
+*.pre-*
+backups/
+__pycache__/
+*.pyc
+*.log
+.nas-monitor-scheduler.lock

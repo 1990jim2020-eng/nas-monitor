@@ -1,0 +1,97 @@
+name: Android release
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: android-release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android 34 packages
+        run: sdkmanager 'platform-tools' 'platforms;android-34' 'build-tools;34.0.0'
+
+      - name: Build release APK
+        working-directory: HADashboard
+        run: bash ./gradlew --no-daemon :app:assembleRelease
+
+      # Sign outside Gradle so no app/build.gradle.kts changes are required.
+      - name: Align, sign and verify APK
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          for secret_name in KEYSTORE_BASE64 KEYSTORE_PASSWORD KEY_ALIAS KEY_PASSWORD; do
+            if [[ -z "${!secret_name}" ]]; then
+              echo "::error::Missing required signing secret: $secret_name"
+              exit 1
+            fi
+          done
+          release_dir='HADashboard/app/build/outputs/apk/release'
+          input_apk="$release_dir/app-release-unsigned.apk"
+          # Current Gradle may sign release with its debug fallback when no
+          # local keystore exists. apksigner replaces that signature below.
+          if [[ ! -f "$input_apk" ]]; then
+            input_apk="$release_dir/app-release.apk"
+          fi
+          test -f "$input_apk"
+          signing_dir=$(mktemp -d "$RUNNER_TEMP/nas-monitor-signing.XXXXXX")
+          trap 'rm -rf "$signing_dir"' EXIT
+          umask 077
+          printf '%s' "$KEYSTORE_BASE64" | base64 --decode > "$signing_dir/release.jks"
+          sdk_dir="${ANDROID_HOME:-${ANDROID_SDK_ROOT:?Android SDK not configured}}"
+          build_tools="$sdk_dir/build-tools/34.0.0"
+          mkdir -p "$RUNNER_TEMP/nas-monitor-release"
+          "$build_tools/zipalign" -f -v 4 "$input_apk" "$signing_dir/aligned.apk"
+          "$build_tools/apksigner" sign \
+            --ks "$signing_dir/release.jks" \
+            --ks-key-alias "$KEY_ALIAS" \
+            --ks-pass env:KEYSTORE_PASSWORD \
+            --key-pass env:KEY_PASSWORD \
+            --out "$RUNNER_TEMP/nas-monitor-release/nas-monitor-release.apk" \
+            "$signing_dir/aligned.apk"
+          "$build_tools/apksigner" verify --verbose "$RUNNER_TEMP/nas-monitor-release/nas-monitor-release.apk"
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nas-monitor-release-apk
+          path: ${{ runner.temp }}/nas-monitor-release/nas-monitor-release.apk
+          if-no-files-found: error
+
+      - name: Publish APK to GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          if ! gh release view "$RELEASE_TAG" > /dev/null 2>&1; then
+            gh release create "$RELEASE_TAG" --verify-tag --title "$RELEASE_TAG" --generate-notes
+          fi
+          gh release upload "$RELEASE_TAG" "$RUNNER_TEMP/nas-monitor-release/nas-monitor-release.apk" --clobber
